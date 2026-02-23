@@ -1,0 +1,6 @@
+@ApiCm_HostAddress = http://localhost:5026
+
+GET {{ApiCm_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
