@@ -5,9 +5,18 @@ using ApiCm.Commons.Settings;
 using ApiCm.Data;
 using ApiCm.Middleware;
 using ApiCm.Repositories;
+using ApiCm.Repositories.Clientes;
+using ApiCm.Repositories.CuentasPorCobrar;
 using ApiCm.Repositories.Interfaces;
+using ApiCm.Repositories.Interfaces.Clientes;
+using ApiCm.Repositories.Interfaces.CuentasPorCobrar;
 using ApiCm.Services;
+using ApiCm.Services.Clientes;
+using ApiCm.Services.CuentasPorCobrar;
 using ApiCm.Services.Interfaces;
+using ApiCm.Services.Interfaces.Clientes;
+using ApiCm.Services.Interfaces.CuentasPorCobrar;
+using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +25,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
+
 // ----- SERILOG -----
 var logFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "LogsApplication");
 
@@ -66,6 +75,13 @@ builder.Services.AddSwaggerGen(c =>
     );
 
     c.SwaggerDoc("Auth", new OpenApiInfo { Title = "Auth", Version = "v1" });
+
+    c.SwaggerDoc("Clientes", new OpenApiInfo { Title = "Clientes", Version = "v1" });
+
+    c.SwaggerDoc(
+        "CuentasPorCobrar",
+        new OpenApiInfo { Title = "CuentasPorCobrar", Version = "v1" }
+    );
 
     c.DocInclusionPredicate(
         (docName, apiDesc) =>
@@ -160,9 +176,49 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+// ============= SERVICES - CLIENTES =============
+builder.Services.AddScoped<ICiudadService, CiudadService>();
+builder.Services.AddScoped<IGrpoCteService, GrpoCteService>();
+builder.Services.AddScoped<ITipoCteService, TipoCteService>();
+builder.Services.AddScoped<ITipoCteMonService, TipoCteMonService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IContactoService, ContactoService>();
+builder.Services.AddScoped<IConCteService, ConCteService>();
+builder.Services.AddScoped<ICteDefectoService, CteDefectoService>();
+
+// ============= SERVICES - CUENTASPORCOBRAR =============
+builder.Services.AddScoped<ITipoDocCxcService, TipoDocCxcService>();
+builder.Services.AddScoped<IDoctoCxcService, DoctoCxcService>();
+builder.Services.AddScoped<ICabMovCxcService, CabMovCxcService>();
+builder.Services.AddScoped<IDetMovCxcService, DetMovCxcService>();
+builder.Services.AddScoped<ICabReciboService, CabReciboService>();
+builder.Services.AddScoped<IDetReciboService, DetReciboService>();
+builder.Services.AddScoped<ICxcActService, CxcActService>();
+builder.Services.AddScoped<ICxcHisService, CxcHisService>();
+
 // ============= REPOSITORIES =============
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
+
+// ============= REPOSITORIES - CLIENTES =============
+builder.Services.AddScoped<ICiudadRepository, CiudadRepository>();
+builder.Services.AddScoped<IGrpoCteRepository, GrpoCteRepository>();
+builder.Services.AddScoped<ITipoCteRepository, TipoCteRepository>();
+builder.Services.AddScoped<ITipoCteMonRepository, TipoCteMonRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IContactoRepository, ContactoRepository>();
+builder.Services.AddScoped<IConCteRepository, ConCteRepository>();
+builder.Services.AddScoped<ICteDefectoRepository, CteDefectoRepository>();
+
+// ============= REPOSITORIES - CUENTASPORCOBRAR =============
+builder.Services.AddScoped<ITipoDocCxcRepository, TipoDocCxcRepository>();
+builder.Services.AddScoped<IDoctoCxcRepository, DoctoCxcRepository>();
+builder.Services.AddScoped<ICabMovCxcRepository, CabMovCxcRepository>();
+builder.Services.AddScoped<IDetMovCxcRepository, DetMovCxcRepository>();
+builder.Services.AddScoped<ICabReciboRepository, CabReciboRepository>();
+builder.Services.AddScoped<IDetReciboRepository, DetReciboRepository>();
+builder.Services.AddScoped<ICxcActRepository, CxcActRepository>();
+builder.Services.AddScoped<ICxcHisRepository, CxcHisRepository>();
 
 builder.Services.AddAuthorization();
 
@@ -193,6 +249,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionStringConfig);
 });
 
+// ============= CM_ABREU DATABASE CONTEXT =============
+var cmAbreuConnectionString =
+    $"Server={objetoConexion.Server};Database={objetoConexion.CmAbreuDatabase};User Id={objetoConexion.User};Password={objetoConexion.Password};TrustServerCertificate=True;";
+
+builder.Services.AddDbContext<CmAbreuDbContext>(options =>
+{
+    options.UseSqlServer(cmAbreuConnectionString);
+});
+
 var app = builder.Build();
 
 app.UseCors("AllowAll");
@@ -208,6 +273,8 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CM Abreu API v1 (All)");
     c.SwaggerEndpoint("/swagger/Auth/swagger.json", "Auth");
+    c.SwaggerEndpoint("/swagger/Clientes/swagger.json", "Clientes");
+    c.SwaggerEndpoint("/swagger/CuentasPorCobrar/swagger.json", "CuentasPorCobrar");
     c.RoutePrefix = "swagger";
 });
 
