@@ -16,9 +16,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Env.Load();
 // ----- SERILOG -----
 var logFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "LogsApplication");
 
