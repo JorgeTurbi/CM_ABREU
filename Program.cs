@@ -73,7 +73,7 @@ builder.Services.AddSwaggerGen(c =>
             Description = "Sistema CM Abreu API",
         }
     );
-
+    c.SwaggerDoc("Inventarios", new OpenApiInfo { Title = "Inventarios", Version = "v1" });
     c.SwaggerDoc("Auth", new OpenApiInfo { Title = "Auth", Version = "v1" });
 
     c.SwaggerDoc("Clientes", new OpenApiInfo { Title = "Clientes", Version = "v1" });
@@ -272,6 +272,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CM Abreu API v1 (All)");
+    c.SwaggerEndpoint("/swagger/Inventarios/swagger.json", "Inventarios");
     c.SwaggerEndpoint("/swagger/Auth/swagger.json", "Auth");
     c.SwaggerEndpoint("/swagger/Clientes/swagger.json", "Clientes");
     c.SwaggerEndpoint("/swagger/CuentasPorCobrar/swagger.json", "CuentasPorCobrar");
