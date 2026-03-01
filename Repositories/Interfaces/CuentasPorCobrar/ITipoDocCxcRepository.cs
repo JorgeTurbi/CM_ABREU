@@ -18,11 +18,4 @@ public interface ITipoDocCxcRepository
     );
     Task<TBTIPODOCCXC> CreateAsync(TBTIPODOCCXC entity, CancellationToken ct = default);
     Task<TBTIPODOCCXC> UpdateAsync(TBTIPODOCCXC entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        CancellationToken ct = default
-    );
 }

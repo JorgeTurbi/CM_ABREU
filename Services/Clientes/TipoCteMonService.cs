@@ -182,43 +182,4 @@ public class TipoCteMonService : ITipoCteMonService
             };
         }
     }
-
-    public async Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, int tclCodigo, int monCodigo)
-    {
-        try
-        {
-            var deleted = await _repository.DeleteAsync(ciaCodigo, tclCodigo, monCodigo);
-            if (!deleted)
-                return new ApiResponse<bool>(false, "Tipo de cliente por moneda no encontrado")
-                {
-                    StatusCode = 404,
-                };
-
-            return new ApiResponse<bool>(true, "Registro eliminado exitosamente", true)
-            {
-                StatusCode = 200,
-            };
-        }
-        catch (DbUpdateException ex)
-        {
-            _logger.LogWarning(ex, "Error de BD al eliminar tipo de cliente por moneda");
-            return new ApiResponse<bool>(
-                false,
-                "No se puede eliminar: existen registros dependientes"
-            )
-            {
-                StatusCode = 409,
-                Errors = [ex.InnerException?.Message ?? ex.Message],
-            };
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error al eliminar tipo de cliente por moneda");
-            return new ApiResponse<bool>(false, "Ocurrió un error")
-            {
-                StatusCode = 500,
-                Errors = [ex.Message],
-            };
-        }
-    }
 }

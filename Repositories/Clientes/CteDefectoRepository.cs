@@ -72,28 +72,4 @@ public class CteDefectoRepository : ICteDefectoRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        string cdfLocalExterior,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCTEDEFECTO.FirstOrDefaultAsync(
-            c => c.CiaCodigo == ciaCodigo && c.CdfLocalExterior == cdfLocalExterior,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCTEDEFECTO.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Cliente defecto eliminado: Compania={Compania}, LocalExterior={LocalExterior}",
-            ciaCodigo,
-            cdfLocalExterior
-        );
-        return true;
-    }
 }

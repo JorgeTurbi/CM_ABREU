@@ -70,28 +70,4 @@ public class ContactoRepository : IContactoRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int conCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCONTACTO.FirstOrDefaultAsync(
-            c => c.CiaCodigo == ciaCodigo && c.ConCodigo == conCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCONTACTO.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Contacto eliminado: Compania={Compania}, Codigo={Codigo}",
-            ciaCodigo,
-            conCodigo
-        );
-        return true;
-    }
 }

@@ -29,14 +29,4 @@ public interface IDetMovCxcService
         int dmcSecuencia,
         TBDETMOVCXCDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero,
-        int dmcSecuencia
-    );
 }

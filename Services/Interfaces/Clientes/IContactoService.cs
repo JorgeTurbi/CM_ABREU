@@ -10,5 +10,4 @@ public interface IContactoService
     Task<ApiResponse<TBCONTACTODto>> GetByIdAsync(int ciaCodigo, int conCodigo);
     Task<ApiResponse<TBCONTACTODto>> CreateAsync(TBCONTACTODto dto);
     Task<ApiResponse<TBCONTACTODto>> UpdateAsync(int ciaCodigo, int conCodigo, TBCONTACTODto dto);
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, int conCodigo);
 }

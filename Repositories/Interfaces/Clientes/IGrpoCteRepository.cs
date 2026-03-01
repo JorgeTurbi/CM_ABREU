@@ -12,5 +12,4 @@ public interface IGrpoCteRepository
     Task<TBGRPOCTE?> GetByIdAsync(int ciaCodigo, int gctCodigo, CancellationToken ct = default);
     Task<TBGRPOCTE> CreateAsync(TBGRPOCTE entity, CancellationToken ct = default);
     Task<TBGRPOCTE> UpdateAsync(TBGRPOCTE entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(int ciaCodigo, int gctCodigo, CancellationToken ct = default);
 }

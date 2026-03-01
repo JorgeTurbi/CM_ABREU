@@ -10,5 +10,4 @@ public interface ITipoCteService
     Task<ApiResponse<TBTIPOCTEDto>> GetByIdAsync(int ciaCodigo, int tclCodigo);
     Task<ApiResponse<TBTIPOCTEDto>> CreateAsync(TBTIPOCTEDto dto);
     Task<ApiResponse<TBTIPOCTEDto>> UpdateAsync(int ciaCodigo, int tclCodigo, TBTIPOCTEDto dto);
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, int tclCodigo);
 }

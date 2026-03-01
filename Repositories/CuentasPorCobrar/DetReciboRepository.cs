@@ -104,48 +104,4 @@ public class DetReciboRepository : IDetReciboRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int crcNumero,
-        int drcSecuencia,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBDETRECIBO.FirstOrDefaultAsync(
-            d =>
-                d.CiaCodigo == ciaCodigo
-                && d.OfiCodigo == ofiCodigo
-                && d.MonCodigo == monCodigo
-                && d.TdcTipo == tdcTipo
-                && d.TdcCodigo == tdcCodigo
-                && d.DxcAno == dxcAno
-                && d.CrcNumero == crcNumero
-                && d.DrcSecuencia == drcSecuencia,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBDETRECIBO.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Detalle recibo eliminado: Compania={Compania}, Oficina={Oficina}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}, Ano={Ano}, Numero={Numero}, Secuencia={Secuencia}",
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno,
-            crcNumero,
-            drcSecuencia
-        );
-        return true;
-    }
 }

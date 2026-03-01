@@ -69,28 +69,4 @@ public class TipoCteRepository : ITipoCteRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int tclCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBTIPOCTE.FirstOrDefaultAsync(
-            t => t.CiaCodigo == ciaCodigo && t.TclCodigo == tclCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBTIPOCTE.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Tipo cliente eliminado: Compania={Compania}, Codigo={Codigo}",
-            ciaCodigo,
-            tclCodigo
-        );
-        return true;
-    }
 }

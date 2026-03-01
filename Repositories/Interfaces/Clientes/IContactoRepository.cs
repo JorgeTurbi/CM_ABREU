@@ -12,5 +12,4 @@ public interface IContactoRepository
     Task<TBCONTACTO?> GetByIdAsync(int ciaCodigo, int conCodigo, CancellationToken ct = default);
     Task<TBCONTACTO> CreateAsync(TBCONTACTO entity, CancellationToken ct = default);
     Task<TBCONTACTO> UpdateAsync(TBCONTACTO entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(int ciaCodigo, int conCodigo, CancellationToken ct = default);
 }

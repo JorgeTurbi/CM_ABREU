@@ -24,17 +24,4 @@ public interface ICxcActRepository
     );
     Task<TBCXCACT> CreateAsync(TBCXCACT entity, CancellationToken ct = default);
     Task<TBCXCACT> UpdateAsync(TBCXCACT entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string ccaModulo,
-        string ccaTipo,
-        int ccaCodigo,
-        string ccaAno,
-        int ccaNumero,
-        int ccaSecuencia,
-        int ccaSubsec,
-        CancellationToken ct = default
-    );
 }

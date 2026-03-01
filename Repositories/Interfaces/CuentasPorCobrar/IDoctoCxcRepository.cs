@@ -20,13 +20,4 @@ public interface IDoctoCxcRepository
     );
     Task<TBDOCTOCXC> CreateAsync(TBDOCTOCXC entity, CancellationToken ct = default);
     Task<TBDOCTOCXC> UpdateAsync(TBDOCTOCXC entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        CancellationToken ct = default
-    );
 }

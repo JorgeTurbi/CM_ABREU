@@ -17,10 +17,4 @@ public interface IConCteRepository
     );
     Task<TBCONCTE> CreateAsync(TBCONCTE entity, CancellationToken ct = default);
     Task<TBCONCTE> UpdateAsync(TBCONCTE entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        string cteCodigo,
-        int cclCodigo,
-        CancellationToken ct = default
-    );
 }

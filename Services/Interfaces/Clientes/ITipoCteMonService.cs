@@ -15,5 +15,4 @@ public interface ITipoCteMonService
         int monCodigo,
         TBTIPOCTEMONDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, int tclCodigo, int monCodigo);
 }

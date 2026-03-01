@@ -15,5 +15,4 @@ public interface IConCteService
         int cclCodigo,
         TBCONCTEDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, string cteCodigo, int cclCodigo);
 }

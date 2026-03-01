@@ -94,42 +94,4 @@ public class DoctoCxcRepository : IDoctoCxcRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBDOCTOCXC.FirstOrDefaultAsync(
-            d =>
-                d.CiaCodigo == ciaCodigo
-                && d.OfiCodigo == ofiCodigo
-                && d.MonCodigo == monCodigo
-                && d.TdcTipo == tdcTipo
-                && d.TdcCodigo == tdcCodigo
-                && d.DxcAno == dxcAno,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBDOCTOCXC.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Documento CXC eliminado: Compania={Compania}, Oficina={Oficina}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}, Ano={Ano}",
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno
-        );
-        return true;
-    }
 }

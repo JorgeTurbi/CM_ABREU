@@ -29,14 +29,4 @@ public interface IDetReciboService
         int drcSecuencia,
         TBDETRECIBODto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int crcNumero,
-        int drcSecuencia
-    );
 }

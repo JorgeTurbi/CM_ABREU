@@ -79,30 +79,4 @@ public class TipoCteMonRepository : ITipoCteMonRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int tclCodigo,
-        int monCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBTIPOCTEMON.FirstOrDefaultAsync(
-            t => t.CiaCodigo == ciaCodigo && t.TclCodigo == tclCodigo && t.MonCodigo == monCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBTIPOCTEMON.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Tipo cliente moneda eliminado: Compania={Compania}, TipoCte={TipoCte}, Moneda={Moneda}",
-            ciaCodigo,
-            tclCodigo,
-            monCodigo
-        );
-        return true;
-    }
 }

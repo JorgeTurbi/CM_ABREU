@@ -173,43 +173,4 @@ public class CteDefectoService : ICteDefectoService
             };
         }
     }
-
-    public async Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, string cdfLocalExterior)
-    {
-        try
-        {
-            var deleted = await _repository.DeleteAsync(ciaCodigo, cdfLocalExterior);
-            if (!deleted)
-                return new ApiResponse<bool>(false, "Default de cliente no encontrado")
-                {
-                    StatusCode = 404,
-                };
-
-            return new ApiResponse<bool>(true, "Default de cliente eliminado exitosamente", true)
-            {
-                StatusCode = 200,
-            };
-        }
-        catch (DbUpdateException ex)
-        {
-            _logger.LogWarning(ex, "Error de BD al eliminar default de cliente");
-            return new ApiResponse<bool>(
-                false,
-                "No se puede eliminar: existen registros dependientes"
-            )
-            {
-                StatusCode = 409,
-                Errors = [ex.InnerException?.Message ?? ex.Message],
-            };
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error al eliminar default de cliente");
-            return new ApiResponse<bool>(false, "Ocurrió un error")
-            {
-                StatusCode = 500,
-                Errors = [ex.Message],
-            };
-        }
-    }
 }

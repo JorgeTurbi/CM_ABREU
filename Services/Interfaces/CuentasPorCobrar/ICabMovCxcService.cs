@@ -27,13 +27,4 @@ public interface ICabMovCxcService
         int cmcNumero,
         TBCABMOVCXCDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero
-    );
 }

@@ -12,5 +12,4 @@ public interface ICiudadRepository
     Task<TBCIUDAD?> GetByIdAsync(int cdaCodigo, CancellationToken ct = default);
     Task<TBCIUDAD> CreateAsync(TBCIUDAD entity, CancellationToken ct = default);
     Task<TBCIUDAD> UpdateAsync(TBCIUDAD entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(int cdaCodigo, CancellationToken ct = default);
 }

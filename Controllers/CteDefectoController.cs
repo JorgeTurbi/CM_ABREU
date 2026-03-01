@@ -52,11 +52,4 @@ public class CteDefectoController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, cdfLocalExterior, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{cdfLocalExterior}")]
-    public async Task<IActionResult> Delete(int ciaCodigo, string cdfLocalExterior)
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, cdfLocalExterior);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

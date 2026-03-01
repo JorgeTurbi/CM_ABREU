@@ -104,48 +104,4 @@ public class DetMovCxcRepository : IDetMovCxcRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero,
-        int dmcSecuencia,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBDETMOVCXC.FirstOrDefaultAsync(
-            d =>
-                d.CiaCodigo == ciaCodigo
-                && d.OfiCodigo == ofiCodigo
-                && d.MonCodigo == monCodigo
-                && d.TdcTipo == tdcTipo
-                && d.TdcCodigo == tdcCodigo
-                && d.DxcAno == dxcAno
-                && d.CmcNumero == cmcNumero
-                && d.DmcSecuencia == dmcSecuencia,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBDETMOVCXC.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Detalle movimiento CXC eliminado: Compania={Compania}, Oficina={Oficina}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}, Ano={Ano}, Numero={Numero}, Secuencia={Secuencia}",
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno,
-            cmcNumero,
-            dmcSecuencia
-        );
-        return true;
-    }
 }

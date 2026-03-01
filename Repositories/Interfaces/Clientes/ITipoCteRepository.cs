@@ -12,5 +12,4 @@ public interface ITipoCteRepository
     Task<TBTIPOCTE?> GetByIdAsync(int ciaCodigo, int tclCodigo, CancellationToken ct = default);
     Task<TBTIPOCTE> CreateAsync(TBTIPOCTE entity, CancellationToken ct = default);
     Task<TBTIPOCTE> UpdateAsync(TBTIPOCTE entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(int ciaCodigo, int tclCodigo, CancellationToken ct = default);
 }

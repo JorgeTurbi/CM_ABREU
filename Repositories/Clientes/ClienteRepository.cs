@@ -70,28 +70,4 @@ public class ClienteRepository : IClienteRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        string cteCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCLIENTE.FirstOrDefaultAsync(
-            c => c.CiaCodigo == ciaCodigo && c.CteCodigo == cteCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCLIENTE.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Cliente eliminado: Compania={Compania}, Codigo={Codigo}",
-            ciaCodigo,
-            cteCodigo
-        );
-        return true;
-    }
 }

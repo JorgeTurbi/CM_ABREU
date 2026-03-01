@@ -56,17 +56,4 @@ public class CiudadRepository : ICiudadRepository
         _logger.LogInformation("Ciudad actualizada: Codigo={Codigo}", entity.CdaCodigo);
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(int cdaCodigo, CancellationToken ct = default)
-    {
-        var entity = await _context.TBCIUDAD.FirstOrDefaultAsync(c => c.CdaCodigo == cdaCodigo, ct);
-
-        if (entity == null)
-            return false;
-
-        _context.TBCIUDAD.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation("Ciudad eliminada: Codigo={Codigo}", cdaCodigo);
-        return true;
-    }
 }

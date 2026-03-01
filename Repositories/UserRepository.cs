@@ -20,7 +20,8 @@ public class UserRepository : IUserRepository
     {
         return await _context
             .Users.AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted, ct);
+            .Where(u => u.Id == id && !u.IsDeleted)
+            .FirstOrDefaultAsync(ct);
     }
 
     public async Task<User?> GetByEmailOrUsernameAsync(
@@ -30,10 +31,10 @@ public class UserRepository : IUserRepository
     {
         return await _context
             .Users.AsNoTracking()
-            .FirstOrDefaultAsync(
-                u => (u.Email == emailOrUsername || u.UserName == emailOrUsername) && !u.IsDeleted,
-                ct
-            );
+            .Where(u =>
+                (u.Email == emailOrUsername || u.UserName == emailOrUsername) && !u.IsDeleted
+            )
+            .FirstOrDefaultAsync(ct);
     }
 
     public async Task<List<User>> GetAllAsync(

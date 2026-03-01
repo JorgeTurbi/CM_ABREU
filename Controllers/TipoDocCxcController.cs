@@ -59,16 +59,4 @@ public class TipoDocCxcController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, monCodigo, tdcTipo, tdcCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}")]
-    public async Task<IActionResult> Delete(
-        int ciaCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo
-    )
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, monCodigo, tdcTipo, tdcCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

@@ -52,11 +52,4 @@ public class GrpoCteController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, gctCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{gctCodigo:int}")]
-    public async Task<IActionResult> Delete(int ciaCodigo, int gctCodigo)
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, gctCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

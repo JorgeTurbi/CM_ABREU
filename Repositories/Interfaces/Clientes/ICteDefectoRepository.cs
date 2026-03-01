@@ -16,9 +16,4 @@ public interface ICteDefectoRepository
     );
     Task<TBCTEDEFECTO> CreateAsync(TBCTEDEFECTO entity, CancellationToken ct = default);
     Task<TBCTEDEFECTO> UpdateAsync(TBCTEDEFECTO entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        string cdfLocalExterior,
-        CancellationToken ct = default
-    );
 }

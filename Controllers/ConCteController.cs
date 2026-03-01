@@ -53,11 +53,4 @@ public class ConCteController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, cteCodigo, cclCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{cteCodigo}/{cclCodigo:int}")]
-    public async Task<IActionResult> Delete(int ciaCodigo, string cteCodigo, int cclCodigo)
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, cteCodigo, cclCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

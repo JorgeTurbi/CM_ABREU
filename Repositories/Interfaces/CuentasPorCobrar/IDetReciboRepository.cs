@@ -22,15 +22,4 @@ public interface IDetReciboRepository
     );
     Task<TBDETRECIBO> CreateAsync(TBDETRECIBO entity, CancellationToken ct = default);
     Task<TBDETRECIBO> UpdateAsync(TBDETRECIBO entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int crcNumero,
-        int drcSecuencia,
-        CancellationToken ct = default
-    );
 }

@@ -155,40 +155,4 @@ public class CiudadService : ICiudadService
             };
         }
     }
-
-    public async Task<ApiResponse<bool>> DeleteAsync(int cdaCodigo)
-    {
-        try
-        {
-            var deleted = await _repository.DeleteAsync(cdaCodigo);
-            if (!deleted)
-                return new ApiResponse<bool>(false, "Ciudad no encontrada") { StatusCode = 404 };
-
-            return new ApiResponse<bool>(true, "Ciudad eliminada exitosamente", true)
-            {
-                StatusCode = 200,
-            };
-        }
-        catch (DbUpdateException ex)
-        {
-            _logger.LogWarning(ex, "Error de BD al eliminar ciudad {Codigo}", cdaCodigo);
-            return new ApiResponse<bool>(
-                false,
-                "No se puede eliminar: existen registros dependientes"
-            )
-            {
-                StatusCode = 409,
-                Errors = [ex.InnerException?.Message ?? ex.Message],
-            };
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error al eliminar ciudad {Codigo}", cdaCodigo);
-            return new ApiResponse<bool>(false, "Ocurrió un error")
-            {
-                StatusCode = 500,
-                Errors = [ex.Message],
-            };
-        }
-    }
 }

@@ -86,29 +86,4 @@ public class CabMovCxcController : ControllerBase
         );
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete(
-        "{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}/{cmcNumero:int}"
-    )]
-    public async Task<IActionResult> Delete(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero
-    )
-    {
-        var result = await _service.DeleteAsync(
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno,
-            cmcNumero
-        );
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

@@ -79,30 +79,4 @@ public class ConCteRepository : IConCteRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        string cteCodigo,
-        int cclCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCONCTE.FirstOrDefaultAsync(
-            c => c.CiaCodigo == ciaCodigo && c.CteCodigo == cteCodigo && c.CclCodigo == cclCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCONCTE.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Contacto-Cliente eliminado: Compania={Compania}, Cliente={Cliente}, Contacto={Contacto}",
-            ciaCodigo,
-            cteCodigo,
-            cclCodigo
-        );
-        return true;
-    }
 }

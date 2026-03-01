@@ -21,10 +21,4 @@ public interface ITipoDocCxcService
         int tdcCodigo,
         TBTIPODOCCXCDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo
-    );
 }

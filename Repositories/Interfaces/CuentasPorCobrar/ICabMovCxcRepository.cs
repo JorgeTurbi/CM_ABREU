@@ -21,14 +21,4 @@ public interface ICabMovCxcRepository
     );
     Task<TBCABMOVCXC> CreateAsync(TBCABMOVCXC entity, CancellationToken ct = default);
     Task<TBCABMOVCXC> UpdateAsync(TBCABMOVCXC entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero,
-        CancellationToken ct = default
-    );
 }

@@ -52,11 +52,4 @@ public class ContactoController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, conCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{conCodigo:int}")]
-    public async Task<IActionResult> Delete(int ciaCodigo, int conCodigo)
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, conCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

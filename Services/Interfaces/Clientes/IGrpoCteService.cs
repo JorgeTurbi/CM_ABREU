@@ -10,5 +10,4 @@ public interface IGrpoCteService
     Task<ApiResponse<TBGRPOCTEDto>> GetByIdAsync(int ciaCodigo, int gctCodigo);
     Task<ApiResponse<TBGRPOCTEDto>> CreateAsync(TBGRPOCTEDto dto);
     Task<ApiResponse<TBGRPOCTEDto>> UpdateAsync(int ciaCodigo, int gctCodigo, TBGRPOCTEDto dto);
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, int gctCodigo);
 }

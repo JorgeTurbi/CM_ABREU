@@ -69,28 +69,4 @@ public class GrpoCteRepository : IGrpoCteRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int gctCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBGRPOCTE.FirstOrDefaultAsync(
-            g => g.CiaCodigo == ciaCodigo && g.GctCodigo == gctCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBGRPOCTE.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Grupo cliente eliminado: Compania={Compania}, Codigo={Codigo}",
-            ciaCodigo,
-            gctCodigo
-        );
-        return true;
-    }
 }

@@ -21,14 +21,4 @@ public interface ICabReciboRepository
     );
     Task<TBCABRECIBO> CreateAsync(TBCABRECIBO entity, CancellationToken ct = default);
     Task<TBCABRECIBO> UpdateAsync(TBCABRECIBO entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int crcNumero,
-        CancellationToken ct = default
-    );
 }

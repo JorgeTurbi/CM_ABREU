@@ -48,11 +48,4 @@ public class CiudadController : ControllerBase
         var result = await _service.UpdateAsync(cdaCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{cdaCodigo:int}")]
-    public async Task<IActionResult> Delete(int cdaCodigo)
-    {
-        var result = await _service.DeleteAsync(cdaCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

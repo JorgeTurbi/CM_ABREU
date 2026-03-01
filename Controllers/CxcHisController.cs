@@ -98,35 +98,4 @@ public class CxcHisController : ControllerBase
         );
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete(
-        "{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{cchModulo}/{cchTipo}/{cchCodigo:int}/{cchAno}/{cchNumero:int}/{cchSecuencia:int}/{cchSubsec:int}"
-    )]
-    public async Task<IActionResult> Delete(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string cchModulo,
-        string cchTipo,
-        int cchCodigo,
-        string cchAno,
-        int cchNumero,
-        int cchSecuencia,
-        int cchSubsec
-    )
-    {
-        var result = await _service.DeleteAsync(
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            cchModulo,
-            cchTipo,
-            cchCodigo,
-            cchAno,
-            cchNumero,
-            cchSecuencia,
-            cchSubsec
-        );
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

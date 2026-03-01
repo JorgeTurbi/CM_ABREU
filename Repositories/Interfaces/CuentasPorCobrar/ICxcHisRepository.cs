@@ -24,17 +24,4 @@ public interface ICxcHisRepository
     );
     Task<TBCXCHIS> CreateAsync(TBCXCHIS entity, CancellationToken ct = default);
     Task<TBCXCHIS> UpdateAsync(TBCXCHIS entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string cchModulo,
-        string cchTipo,
-        int cchCodigo,
-        string cchAno,
-        int cchNumero,
-        int cchSecuencia,
-        int cchSubsec,
-        CancellationToken ct = default
-    );
 }

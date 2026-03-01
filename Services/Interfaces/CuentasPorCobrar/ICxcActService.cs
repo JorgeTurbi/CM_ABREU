@@ -33,16 +33,4 @@ public interface ICxcActService
         int ccaSubsec,
         TBCXCACTDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string ccaModulo,
-        string ccaTipo,
-        int ccaCodigo,
-        string ccaAno,
-        int ccaNumero,
-        int ccaSecuencia,
-        int ccaSubsec
-    );
 }

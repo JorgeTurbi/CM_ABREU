@@ -14,5 +14,4 @@ public interface ICteDefectoService
         string cdfLocalExterior,
         TBCTEDEFECTODto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, string cdfLocalExterior);
 }

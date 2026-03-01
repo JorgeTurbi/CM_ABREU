@@ -99,45 +99,4 @@ public class CabReciboRepository : ICabReciboRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int crcNumero,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCABRECIBO.FirstOrDefaultAsync(
-            c =>
-                c.CiaCodigo == ciaCodigo
-                && c.OfiCodigo == ofiCodigo
-                && c.MonCodigo == monCodigo
-                && c.TdcTipo == tdcTipo
-                && c.TdcCodigo == tdcCodigo
-                && c.DxcAno == dxcAno
-                && c.CrcNumero == crcNumero,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCABRECIBO.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Recibo eliminado: Compania={Compania}, Oficina={Oficina}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}, Ano={Ano}, Numero={Numero}",
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno,
-            crcNumero
-        );
-        return true;
-    }
 }

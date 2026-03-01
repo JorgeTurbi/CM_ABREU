@@ -52,11 +52,4 @@ public class ClienteController : ControllerBase
         var result = await _service.UpdateAsync(ciaCodigo, cteCodigo, dto);
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
-
-    [HttpDelete("{ciaCodigo:int}/{cteCodigo}")]
-    public async Task<IActionResult> Delete(int ciaCodigo, string cteCodigo)
-    {
-        var result = await _service.DeleteAsync(ciaCodigo, cteCodigo);
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
 }

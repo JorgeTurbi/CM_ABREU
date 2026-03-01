@@ -20,7 +20,8 @@ public class SessionRepository : ISessionRepository
     {
         return await _context
             .Sessions.AsNoTracking()
-            .FirstOrDefaultAsync(s => s.Id == id && !s.IsDeleted, ct);
+            .Where(s => s.Id == id && !s.IsDeleted)
+            .FirstOrDefaultAsync(ct);
     }
 
     public async Task<Session?> GetByRefreshTokenAsync(
@@ -28,14 +29,14 @@ public class SessionRepository : ISessionRepository
         CancellationToken ct = default
     )
     {
-        return await _context.Sessions.FirstOrDefaultAsync(
-            s =>
+        return await _context
+            .Sessions.Where(s =>
                 s.TokenRefresh == refreshToken
                 && !s.IsRevoke
                 && !s.IsDeleted
-                && s.ExpireTokenRefresh > DateTime.UtcNow,
-            ct
-        );
+                && s.ExpireTokenRefresh > DateTime.UtcNow
+            )
+            .FirstOrDefaultAsync(ct);
     }
 
     public async Task<List<Session>> GetActiveSessionsByUserIdAsync(
@@ -81,10 +82,9 @@ public class SessionRepository : ISessionRepository
 
     public async Task RevokeSessionAsync(Guid sessionId, CancellationToken ct = default)
     {
-        var session = await _context.Sessions.FirstOrDefaultAsync(
-            s => s.Id == sessionId && !s.IsDeleted,
-            ct
-        );
+        var session = await _context
+            .Sessions.Where(s => s.Id == sessionId && !s.IsDeleted)
+            .FirstOrDefaultAsync(ct);
 
         if (session != null)
         {

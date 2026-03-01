@@ -26,9 +26,7 @@ public class DoctoCxcController : ControllerBase
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(
-        "{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}"
-    )]
+    [HttpGet("{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}")]
     public async Task<IActionResult> GetById(
         int ciaCodigo,
         int ofiCodigo,
@@ -58,9 +56,7 @@ public class DoctoCxcController : ControllerBase
             : StatusCode(result.StatusCode, result);
     }
 
-    [HttpPut(
-        "{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}"
-    )]
+    [HttpPut("{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}")]
     public async Task<IActionResult> Update(
         int ciaCodigo,
         int ofiCodigo,
@@ -79,29 +75,6 @@ public class DoctoCxcController : ControllerBase
             tdcCodigo,
             dxcAno,
             dto
-        );
-        return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
-    }
-
-    [HttpDelete(
-        "{ciaCodigo:int}/{ofiCodigo:int}/{monCodigo:int}/{tdcTipo}/{tdcCodigo:int}/{dxcAno}"
-    )]
-    public async Task<IActionResult> Delete(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno
-    )
-    {
-        var result = await _service.DeleteAsync(
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno
         );
         return result.Success == true ? Ok(result) : StatusCode(result.StatusCode, result);
     }

@@ -84,36 +84,4 @@ public class TipoDocCxcRepository : ITipoDocCxcRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBTIPODOCCXC.FirstOrDefaultAsync(
-            t =>
-                t.CiaCodigo == ciaCodigo
-                && t.MonCodigo == monCodigo
-                && t.TdcTipo == tdcTipo
-                && t.TdcCodigo == tdcCodigo,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBTIPODOCCXC.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Tipo documento CXC eliminado: Compania={Compania}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}",
-            ciaCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo
-        );
-        return true;
-    }
 }

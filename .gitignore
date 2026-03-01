@@ -4,3 +4,5 @@ LogsApplication/
 *.env
 .claude
 PLAN.md
+generate_dictionary.py
+Diccionario_BD_CM_ABREU.xlsx

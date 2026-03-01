@@ -33,16 +33,4 @@ public interface ICxcHisService
         int cchSubsec,
         TBCXCHISDto dto
     );
-    Task<ApiResponse<bool>> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string cchModulo,
-        string cchTipo,
-        int cchCodigo,
-        string cchAno,
-        int cchNumero,
-        int cchSecuencia,
-        int cchSubsec
-    );
 }

@@ -17,10 +17,4 @@ public interface ITipoCteMonRepository
     );
     Task<TBTIPOCTEMON> CreateAsync(TBTIPOCTEMON entity, CancellationToken ct = default);
     Task<TBTIPOCTEMON> UpdateAsync(TBTIPOCTEMON entity, CancellationToken ct = default);
-    Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int tclCodigo,
-        int monCodigo,
-        CancellationToken ct = default
-    );
 }

@@ -60,10 +60,7 @@ public class ConCteService : IConCteService
         {
             var entity = await _repository.GetByIdAsync(ciaCodigo, cteCodigo, cclCodigo);
             if (entity == null)
-                return new ApiResponse<TBCONCTEDto>(
-                    false,
-                    "Contacto de cliente no encontrado"
-                )
+                return new ApiResponse<TBCONCTEDto>(false, "Contacto de cliente no encontrado")
                 {
                     StatusCode = 404,
                 };
@@ -135,10 +132,7 @@ public class ConCteService : IConCteService
         {
             var existing = await _repository.GetByIdAsync(ciaCodigo, cteCodigo, cclCodigo);
             if (existing == null)
-                return new ApiResponse<TBCONCTEDto>(
-                    false,
-                    "Contacto de cliente no encontrado"
-                )
+                return new ApiResponse<TBCONCTEDto>(false, "Contacto de cliente no encontrado")
                 {
                     StatusCode = 404,
                 };
@@ -174,45 +168,6 @@ public class ConCteService : IConCteService
         {
             _logger.LogError(ex, "Error al actualizar contacto de cliente");
             return new ApiResponse<TBCONCTEDto>(false, "Ocurrió un error")
-            {
-                StatusCode = 500,
-                Errors = [ex.Message],
-            };
-        }
-    }
-
-    public async Task<ApiResponse<bool>> DeleteAsync(int ciaCodigo, string cteCodigo, int cclCodigo)
-    {
-        try
-        {
-            var deleted = await _repository.DeleteAsync(ciaCodigo, cteCodigo, cclCodigo);
-            if (!deleted)
-                return new ApiResponse<bool>(false, "Contacto de cliente no encontrado")
-                {
-                    StatusCode = 404,
-                };
-
-            return new ApiResponse<bool>(true, "Contacto de cliente eliminado exitosamente", true)
-            {
-                StatusCode = 200,
-            };
-        }
-        catch (DbUpdateException ex)
-        {
-            _logger.LogWarning(ex, "Error de BD al eliminar contacto de cliente");
-            return new ApiResponse<bool>(
-                false,
-                "No se puede eliminar: existen registros dependientes"
-            )
-            {
-                StatusCode = 409,
-                Errors = [ex.InnerException?.Message ?? ex.Message],
-            };
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error al eliminar contacto de cliente");
-            return new ApiResponse<bool>(false, "Ocurrió un error")
             {
                 StatusCode = 500,
                 Errors = [ex.Message],

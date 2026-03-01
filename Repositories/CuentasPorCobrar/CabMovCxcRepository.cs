@@ -99,45 +99,4 @@ public class CabMovCxcRepository : ICabMovCxcRepository
         );
         return entity;
     }
-
-    public async Task<bool> DeleteAsync(
-        int ciaCodigo,
-        int ofiCodigo,
-        int monCodigo,
-        string tdcTipo,
-        int tdcCodigo,
-        string dxcAno,
-        int cmcNumero,
-        CancellationToken ct = default
-    )
-    {
-        var entity = await _context.TBCABMOVCXC.FirstOrDefaultAsync(
-            c =>
-                c.CiaCodigo == ciaCodigo
-                && c.OfiCodigo == ofiCodigo
-                && c.MonCodigo == monCodigo
-                && c.TdcTipo == tdcTipo
-                && c.TdcCodigo == tdcCodigo
-                && c.DxcAno == dxcAno
-                && c.CmcNumero == cmcNumero,
-            ct
-        );
-
-        if (entity == null)
-            return false;
-
-        _context.TBCABMOVCXC.Remove(entity);
-        await _context.SaveChangesAsync(ct);
-        _logger.LogInformation(
-            "Movimiento CXC eliminado: Compania={Compania}, Oficina={Oficina}, Moneda={Moneda}, Tipo={Tipo}, Codigo={Codigo}, Ano={Ano}, Numero={Numero}",
-            ciaCodigo,
-            ofiCodigo,
-            monCodigo,
-            tdcTipo,
-            tdcCodigo,
-            dxcAno,
-            cmcNumero
-        );
-        return true;
-    }
 }
